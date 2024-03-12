@@ -21,7 +21,7 @@ public class isPalindrome {
 
         return x == container;
     }
-    
+
     public static void main(String[] args) {
         isPalindrome sol1 = new isPalindrome();
         Boolean isPal = sol1.isPalindromeInt(131);
