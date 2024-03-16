@@ -20,7 +20,7 @@ public class Main {
         wordFrequency("The quick brown fox jumps over the lazy dog and the dog went out");
     }
 
-    public static int indexOfLowestNum(int[] arr) {
+    public int indexOfLowestNum(int[] arr) {
         // assume first element is the lowest number
         // iterate through array and compare elements
         if (arr.length < 1) {
@@ -39,7 +39,7 @@ public class Main {
 
         return lowestIndex;
     }
-
+    
     public static int countUniqueWords(String sentence) {
         String[] words = sentence.toLowerCase().split(" "); // Split by spaces and convert to lowercase
         HashSet<String> uniqueWords = new HashSet<>(Arrays.asList(words)); // Add words to HashSet for uniqueness
