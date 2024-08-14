@@ -9,11 +9,107 @@
 // 9 Write code to find the first non-repeating character in a given String using HashSets.
 // 10. Implement a program to check if a string is an anagram of another string (uses same characters) using character counts in HashMaps.
 
+import java.math.BigInteger;
+import java.net.Inet4Address;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        frequencyCounter(new int[] {3, 3, 4, 5, 6, 6, 6, 6, 6}).forEach((key, value) -> System.out.println("Key: " + key + ", Value: " + value));
+
+    }
+
+    // 66. Plus One
+    public static int[] plusOne(int[] digits) {
+        //You are given a large integer represented as an integer array digits,
+        // where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to
+        // least significant in left-to-right order. The large integer does not contain any leading 0's.
+        //Increment the large integer by one and return the resulting array of digits.
+
+        // [4, 3, 2, 1] -> [4, 3, 2, 2]
+        // [4, 3, 9, 9] -> [4, 4, 0, 0]
+        // [9] -> [1, 0]
+
+        // convert to string -> int
+        // increment int then convert to array
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int num : digits) {
+            sb.append(num);
+        }
+
+        BigInteger number = new BigInteger(sb.toString());
+        String numberStr = String.valueOf(number.add(BigInteger.valueOf(Long.parseLong("1"))));
+
+        int[] digitIncrement = new int[numberStr.length()];
+
+        for(int i = 0; i < numberStr.length(); i++) {
+            digitIncrement[i] = Character.getNumericValue(numberStr.charAt(i));
+        }
+
+        return digitIncrement;
+    }
+    public static int[] plusOneBetter(int[] digits) {
+        for(int i = digits.length - 1; i >= 0; i--) {
+            if(digits[i] < 9) {
+                digits[i]++;
+
+                return digits;
+            } else {
+                digits[i] = 0;
+            }
+        }
+
+        int[] newDigits = new int[digits.length + 1];
+        newDigits[0] = 1;
+        return newDigits;
+    }
+
+    //Length of Last Word (58)
+    public static int lengthOfLastWord(String message) {
+        /*
+        * Given a string s consisting of words and spaces, return the length of the last word in the string.
+        * A word is a maximal substring consisting of non-space characters only.
+        */
+
+        if(Objects.equals(message, "")) throw new IllegalArgumentException("Empty string.");
+
+        String[] sentence = message.split(" ");
+        String lastWord = sentence[sentence.length - 1];
+        for(String s : sentence) System.out.println(s);
+
+        return lastWord.length();
+    }
+
+    //Write a function that takes a string and returns a Hashmap of the frequency count of each character.
+    public static Map<Character, Integer> letterFrequencyCounter(String message) {
+        char[] c = message.replaceAll("[^a-zA-Z0-9]", "").toLowerCase().toCharArray();
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+
+        for (char character : c) {
+            if (!frequencyMap.containsKey(character)) {
+                frequencyMap.put(character, 1);
+            } else {
+                frequencyMap.put(character, frequencyMap.get(character) + 1);
+            }
+        }
+
+        return frequencyMap;
+    }
+
+    // Write a function that takes a list of characters and returns a HasMap with the frequency count of each integer.
+    public static Map<Character, Integer> charFreqCounter(char[] arr) {
+        Map<Character, Integer> map = new HashMap<>();
+
+        for(int i= 0; i < arr.length; i++) {
+            if(!map.containsKey(arr[i])) {
+                map.put(arr[i], 1);
+            } else {
+                map.put(arr[i], map.get(arr[i]) + 1);
+            }
+        }
+
+        return map;
     }
 
     // Write a function that takes a list of integers and returns a HashMap with the frequency count of each integer.
