@@ -15,7 +15,18 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println(isValidPalindrom("a_ba"));
+    }
 
+    // 125. Valid Palindrome
+    public static boolean isValidPalindrom(String s) {
+        String cleanedText = s.replaceAll("[\\s_]|[^\\w]", "").toLowerCase();
+        StringBuilder reversed = new StringBuilder(cleanedText);
+
+        System.out.println(cleanedText);
+        System.out.println(reversed.reverse().toString().toLowerCase());
+
+        return cleanedText.equals(reversed.reverse().toString().toLowerCase());
     }
 
     // 66. Plus One
